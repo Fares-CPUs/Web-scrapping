@@ -17,11 +17,12 @@ soupe = BeautifulSoup(page.text ,'html.parser' ) #A WARNING ? attention
 
 tables =  soupe.find_all('table')
 
-# extration des donnes des entreprises et leurs revenues
+# extration des donnes des entreprises et leurs revenues sous format d'un code HTML
 companies = soupe.find('table' , class_="wikitable sortable")
 tbheader = companies.find_all('th')
 tbcontent = companies.find_all('tr')
 
+# On nettoie le code HTML pour avoir que du text
 tbheader = [title.text.strip() for title in tbheader]
 
 """--------DATA SOUS FORME DE LIST ---------------"""
@@ -52,5 +53,6 @@ print(df)
 # convertion en csv pour un autre projet
 path = r"C:\Users\fares\Documents\companies.csv"
 df.to_csv(path, index=False, encoding='utf-8')
+
 
 
